@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>My Account | Finance Analytics</title>
+
+    <!-- Bootstrap -->
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+        rel="stylesheet"
+    >
+
+    <!-- Font Awesome -->
+    <link
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+        rel="stylesheet"
+    >
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+
+            min-height: 100vh;
+
+            font-family: Arial, sans-serif;
+
+            background:
+                radial-gradient(
+                    circle at top right,
+                    rgba(65,101,232,0.12),
+                    transparent 35%
+                ),
+                #f5f7fb;
+
+            color: #202b49;
+
+        }
+
+
+        /* ================= NAVBAR ================= */
+
+        .navbar {
+
+            background: #171d2d;
+
+            min-height: 75px;
+
+            padding: 0 30px;
+
+            box-shadow:
+                0 5px 20px rgba(0,0,0,0.15);
+
+        }
+
+        .navbar-brand {
+
+            color: white !important;
+
+            font-size: 24px;
+
+            font-weight: 700;
+
+        }
+
+        .navbar-brand i {
+
+            color: #6f8cff;
+
+            margin-right: 8px;
+
+        }
+
+        .back-link {
+
+            color: #dfe4f2;
+
+            text-decoration: none;
+
+            font-weight: 600;
+
+        }
+
+        .back-link:hover {
+
+            color: white;
+
+        }
+
+
+        /* ================= PAGE ================= */
+
+        .account-section {
+
+            min-height:
+                calc(100vh - 75px);
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            padding: 50px 20px;
+
+        }
+
+
+        /* ================= CARD ================= */
+
+        .account-card {
+
+            width: 100%;
+
+            max-width: 700px;
+
+            background: white;
+
+            border-radius: 24px;
+
+            padding: 45px;
+
+            box-shadow:
+                0 20px 60px rgba(35,48,80,0.12);
+
+        }
+
+
+        /* ================= HEADER ================= */
+
+        .account-header {
+
+            text-align: center;
+
+            margin-bottom: 35px;
+
+        }
+
+        .profile-icon {
+
+            width: 90px;
+
+            height: 90px;
+
+            border-radius: 50%;
+
+            margin: 0 auto 18px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #4165e8,
+                    #718cff
+                );
+
+            color: white;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            font-size: 40px;
+
+            box-shadow:
+                0 12px 30px rgba(65,101,232,0.25);
+
+        }
+
+        .account-header h1 {
+
+            font-size: 32px;
+
+            font-weight: 800;
+
+            color: #18213a;
+
+            margin-bottom: 8px;
+
+        }
+
+        .account-header p {
+
+            color: #7b8499;
+
+            margin: 0;
+
+        }
+
+
+        /* ================= DETAILS ================= */
+
+        .details {
+
+            display: grid;
+
+            gap: 16px;
+
+        }
+
+        .detail-box {
+
+            background: #f8f9fd;
+
+            border: 1px solid #eef0f6;
+
+            border-radius: 15px;
+
+            padding: 20px;
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 18px;
+
+        }
+
+        .detail-icon {
+
+            width: 48px;
+
+            height: 48px;
+
+            min-width: 48px;
+
+            border-radius: 12px;
+
+            background: #eaf0ff;
+
+            color: #4165e8;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            font-size: 20px;
+
+        }
+
+        .detail-label {
+
+            font-size: 13px;
+
+            color: #7c8498;
+
+            margin-bottom: 4px;
+
+        }
+
+        .detail-value {
+
+            font-size: 17px;
+
+            font-weight: 700;
+
+            color: #27314c;
+
+            word-break: break-word;
+
+        }
+
+
+        /* ================= BUTTON ================= */
+
+        .back-button {
+
+            display: block;
+
+            text-align: center;
+
+            text-decoration: none;
+
+            margin-top: 28px;
+
+            padding: 14px;
+
+            border-radius: 10px;
+
+            background: #4165e8;
+
+            color: white;
+
+            font-weight: 700;
+
+            transition: 0.3s;
+
+        }
+
+        .back-button:hover {
+
+            background: #3154d5;
+
+            color: white;
+
+            transform: translateY(-2px);
+
+        }
+
+
+        /* ================= RESPONSIVE ================= */
+
+        @media (max-width: 576px) {
+
+            .account-card {
+
+                padding: 30px 20px;
+
+            }
+
+            .account-header h1 {
+
+                font-size: 27px;
+
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- ================= NAVBAR ================= -->
+
+    <nav class="navbar">
+
+        <div
+            class="container-fluid d-flex justify-content-between align-items-center"
+        >
+
+            <a
+                class="navbar-brand"
+                href="{{ url_for('home') }}"
+            >
+
+                <i class="fas fa-wallet"></i>
+
+                Finance Analytics
+
+            </a>
+
+
+            <a
+                class="back-link"
+                href="{{ url_for('home') }}"
+            >
+
+                <i class="fas fa-house"></i>
+
+                Home
+
+            </a>
+
+        </div>
+
+    </nav>
+
+
+    <!-- ================= ACCOUNT ================= -->
+
+    <section class="account-section">
+
+        <div class="account-card">
+
+
+            <!-- HEADER -->
+
+            <div class="account-header">
+
+                <div class="profile-icon">
+
+                    <i class="fas fa-user"></i>
+
+                </div>
+
+                <h1>
+                    My Account
+                </h1>
+
+                <p>
+                    Your Finance Analytics account details
+                </p>
+
+            </div>
+
+
+            <!-- DETAILS -->
+
+            <div class="details">
+
+
+                <!-- NAME -->
+
+                <div class="detail-box">
+
+                    <div class="detail-icon">
+
+                        <i class="fas fa-user"></i>
+
+                    </div>
+
+                    <div>
+
+                        <div class="detail-label">
+                            Full Name
+                        </div>
+
+                        <div class="detail-value">
+
+                            {{ user["name"] }}
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- EMAIL -->
+
+                <div class="detail-box">
+
+                    <div class="detail-icon">
+
+                        <i class="fas fa-envelope"></i>
+
+                    </div>
+
+                    <div>
+
+                        <div class="detail-label">
+                            Email Address
+                        </div>
+
+                        <div class="detail-value">
+
+                            {{ user["email"] }}
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- USER ID -->
+
+                <div class="detail-box">
+
+                    <div class="detail-icon">
+
+                        <i class="fas fa-id-card"></i>
+
+                    </div>
+
+                    <div>
+
+                        <div class="detail-label">
+                            Account ID
+                        </div>
+
+                        <div class="detail-value">
+
+                            #{{ user["id"] }}
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- ACCOUNT STATUS -->
+
+                <div class="detail-box">
+
+                    <div class="detail-icon">
+
+                        <i class="fas fa-circle-check"></i>
+
+                    </div>
+
+                    <div>
+
+                        <div class="detail-label">
+                            Account Status
+                        </div>
+
+                        <div class="detail-value">
+
+                            Active
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+            </div>
+
+
+            <!-- BACK -->
+
+            <a
+                href="{{ url_for('home') }}"
+                class="back-button"
+            >
+
+                <i class="fas fa-arrow-left"></i>
+
+                Back to Home
+
+            </a>
+
+
+        </div>
+
+    </section>
+
+
+</body>
+
+</html>

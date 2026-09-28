@@ -1,0 +1,1689 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Finance Prediction</title>
+
+    <!-- Bootstrap -->
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+        rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+
+    <style>
+
+        body {
+            background: #f5f7fb;
+        }
+
+
+        form {
+            background: #ffffff;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+        }
+
+
+        .form-control,
+        .form-select {
+            height: 48px;
+        }
+
+
+        .section-title {
+            font-weight: 600;
+            margin-top: 10px;
+            margin-bottom: 10px;
+        }
+
+
+        .suggestion-label {
+            font-size: 12px;
+            color: #777;
+        }
+
+
+        .manual-note {
+            font-size: 13px;
+            color: #6c757d;
+        }
+
+
+        #budgetMessage {
+            display: none;
+        }
+
+
+        .suggested-field {
+            background: #fffdf0;
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<!-- =====================================================
+     NAVBAR
+===================================================== -->
+
+<nav class="navbar navbar-dark bg-dark">
+
+    <div class="container">
+
+        <a class="navbar-brand" href="/">
+
+            <i class="fa-solid fa-wallet"></i>
+
+            Finance Predictor
+
+        </a>
+
+
+        <div>
+
+            <a
+                href="/"
+                class="btn btn-light btn-sm me-2">
+
+                Home
+
+            </a>
+
+
+            <a
+                href="/dashboard"
+                class="btn btn-warning btn-sm">
+
+                Dashboard
+
+            </a>
+
+        </div>
+
+    </div>
+
+</nav>
+
+
+
+<!-- =====================================================
+     MAIN CONTAINER
+===================================================== -->
+
+<div class="container mt-5">
+
+
+    <h2 class="text-center mb-4">
+
+        <i class="fa-solid fa-chart-line"></i>
+
+        Financial Health Prediction
+
+    </h2>
+
+
+
+    <!-- =================================================
+         FORM
+    ================================================== -->
+
+    <form
+        action="/predict"
+        method="POST">
+
+
+        <!-- =================================================
+             INCOME & BUDGET
+        ================================================== -->
+
+        <h5 class="section-title">
+
+            <i class="fa-solid fa-money-bill-wave"></i>
+
+            Income & Budget
+
+        </h5>
+
+        <hr>
+
+
+        <div class="row g-3">
+
+
+            <!-- MONTHLY INCOME -->
+
+            <div class="col-md-4">
+
+                <label class="form-label">
+
+                    Monthly Income
+
+                </label>
+
+
+                <input
+                    type="number"
+                    class="form-control"
+                    name="Monthly_Income"
+                    list="incomeList"
+                    placeholder="Enter or Select Income"
+                    min="0"
+                    step="1"
+                    required>
+
+
+                <datalist id="incomeList">
+
+                    <option value="5000">
+                    <option value="10000">
+                    <option value="15000">
+                    <option value="20000">
+                    <option value="25000">
+                    <option value="30000">
+                    <option value="40000">
+                    <option value="50000">
+                    <option value="60000">
+                    <option value="70000">
+                    <option value="80000">
+                    <option value="90000">
+                    <option value="100000">
+
+                </datalist>
+
+            </div>
+
+
+
+            <!-- MONTHLY BUDGET -->
+
+            <div class="col-md-4">
+
+                <label class="form-label">
+
+                    Monthly Budget
+
+                </label>
+
+
+                <input
+                    type="number"
+                    class="form-control"
+                    name="Monthly_Budget"
+                    placeholder="Enter Monthly Budget"
+                    min="0"
+                    step="1"
+                    required>
+
+
+                <button
+                    type="button"
+                    id="generateBudgetBtn"
+                    class="btn btn-warning mt-2 w-100">
+
+                    <i class="fa-solid fa-wand-magic-sparkles"></i>
+
+                    Generate Suggested Expenses
+
+                </button>
+
+
+                <small class="text-muted d-block mt-2">
+
+                    Enter Income, Budget and Current Savings first.
+
+                </small>
+
+            </div>
+
+
+
+            <!-- CURRENT SAVINGS -->
+
+            <div class="col-md-4">
+
+                <label class="form-label">
+
+                    Current Savings
+
+                </label>
+
+
+                <input
+                    type="number"
+                    class="form-control"
+                    name="Current_Savings"
+                    placeholder="Enter Current Savings"
+                    min="0"
+                    step="1"
+                    required>
+
+            </div>
+
+
+
+            <!-- SAVINGS GOAL -->
+
+            <div class="col-md-4">
+
+                <label class="form-label">
+
+                    Savings Goal
+
+                    <span class="text-muted">
+
+                        (Optional)
+
+                    </span>
+
+                </label>
+
+
+                <input
+                    type="number"
+                    class="form-control"
+                    name="Savings_Goal"
+                    placeholder="Optional Savings Goal"
+                    min="0"
+                    step="1"
+                    value="0">
+
+
+                <small class="text-muted">
+
+                    Not required for automatic suggestions.
+
+                </small>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- =================================================
+             SMART SUGGESTION MESSAGE
+        ================================================== -->
+
+        <div
+            id="budgetMessage"
+            class="alert alert-info mt-4">
+
+        </div>
+
+
+
+        <!-- =================================================
+             EXPENSE DETAILS
+        ================================================== -->
+
+        <h5 class="section-title mt-4">
+
+            <i class="fa-solid fa-receipt"></i>
+
+            Expense Details
+
+        </h5>
+
+        <hr>
+
+
+        <p class="manual-note">
+
+            <i class="fa-solid fa-circle-info"></i>
+
+            Suggested values are generated automatically.
+            You can manually edit any amount.
+
+        </p>
+
+
+        <div class="row g-3">
+
+
+            <!-- RENT -->
+
+            <div class="col-md-4">
+
+                <label class="form-label">
+
+                    Rent
+
+                </label>
+
+
+                <input
+                    type="number"
+                    class="form-control expense suggested-field"
+                    name="Rent"
+                    placeholder="Enter Rent"
+                    min="0"
+                    step="1"
+                    required>
+
+
+                <small class="suggestion-label">
+
+                    Suggested allocation: 25%
+
+                </small>
+
+            </div>
+
+
+
+            <!-- FOOD -->
+
+            <div class="col-md-4">
+
+                <label class="form-label">
+
+                    Food
+
+                </label>
+
+
+                <input
+                    type="number"
+                    class="form-control expense suggested-field"
+                    name="Food"
+                    placeholder="Enter Food Expense"
+                    min="0"
+                    step="1"
+                    required>
+
+
+                <small class="suggestion-label">
+
+                    Suggested allocation: 12%
+
+                </small>
+
+            </div>
+
+
+
+            <!-- TRANSPORT -->
+
+            <div class="col-md-4">
+
+                <label class="form-label">
+
+                    Transport
+
+                </label>
+
+
+                <input
+                    type="number"
+                    class="form-control expense suggested-field"
+                    name="Transport"
+                    placeholder="Enter Transport Expense"
+                    min="0"
+                    step="1"
+                    required>
+
+
+                <small class="suggestion-label">
+
+                    Suggested allocation: 10%
+
+                </small>
+
+            </div>
+
+
+
+            <!-- SHOPPING -->
+
+            <div class="col-md-4">
+
+                <label class="form-label">
+
+                    Shopping
+
+                </label>
+
+
+                <input
+                    type="number"
+                    class="form-control expense suggested-field"
+                    name="Shopping"
+                    placeholder="Enter Shopping Expense"
+                    min="0"
+                    step="1"
+                    required>
+
+
+                <small class="suggestion-label">
+
+                    Suggested allocation: 8%
+
+                </small>
+
+            </div>
+
+
+
+            <!-- BILLS -->
+
+            <div class="col-md-4">
+
+                <label class="form-label">
+
+                    Bills
+
+                </label>
+
+
+                <input
+                    type="number"
+                    class="form-control expense suggested-field"
+                    name="Bills"
+                    placeholder="Enter Bills"
+                    min="0"
+                    step="1"
+                    required>
+
+
+                <small class="suggestion-label">
+
+                    Suggested allocation: 10%
+
+                </small>
+
+            </div>
+
+
+
+            <!-- ENTERTAINMENT -->
+
+            <div class="col-md-4">
+
+                <label class="form-label">
+
+                    Entertainment
+
+                </label>
+
+
+                <input
+                    type="number"
+                    class="form-control expense suggested-field"
+                    name="Entertainment"
+                    placeholder="Enter Entertainment Expense"
+                    min="0"
+                    step="1"
+                    required>
+
+
+                <small class="suggestion-label">
+
+                    Suggested allocation: 5%
+
+                </small>
+
+            </div>
+
+
+
+            <!-- EMI -->
+
+            <div class="col-md-4">
+
+                <label class="form-label">
+
+                    EMI
+
+                </label>
+
+
+                <input
+                    type="number"
+                    class="form-control expense suggested-field"
+                    name="EMI"
+                    placeholder="Enter EMI"
+                    min="0"
+                    step="1"
+                    required>
+
+
+                <small class="suggestion-label">
+
+                    Suggested allocation: 12%
+
+                </small>
+
+            </div>
+
+
+
+            <!-- OTHER EXPENSES -->
+
+            <div class="col-md-4">
+
+                <label class="form-label">
+
+                    Other Expenses
+
+                </label>
+
+
+                <input
+                    type="number"
+                    class="form-control expense suggested-field"
+                    name="Other_Expenses"
+                    placeholder="Enter Other Expenses"
+                    min="0"
+                    step="1"
+                    required>
+
+
+                <small class="suggestion-label">
+
+                    Suggested allocation: 18%
+
+                </small>
+
+            </div>
+
+
+
+            <!-- =================================================
+                 TRANSACTION HISTORY
+            ================================================== -->
+
+            <div class="col-md-4">
+
+                <label class="form-label">
+
+                    Suggested Transaction Pattern
+
+                </label>
+
+
+                <select
+                    class="form-select"
+                    id="Transaction_History"
+                    name="Transaction_History"
+                    required>
+
+
+                    <option value="">
+
+                        Generate a suggestion first
+
+                    </option>
+
+
+                    <option value="Mostly Essential Expenses">
+
+                        Mostly Essential Expenses
+
+                    </option>
+
+
+                    <option value="Balanced Spending Pattern">
+
+                        Balanced Spending Pattern
+
+                    </option>
+
+
+                    <option value="Frequent Online Purchases">
+
+                        Frequent Online Purchases
+
+                    </option>
+
+
+                    <option value="Frequent Food & Shopping Expenses">
+
+                        Frequent Food & Shopping Expenses
+
+                    </option>
+
+
+                    <option value="High Entertainment Spending">
+
+                        High Entertainment Spending
+
+                    </option>
+
+
+                    <option value="High Travel Expenses">
+
+                        High Travel Expenses
+
+                    </option>
+
+
+                    <option value="Investment-Oriented Spending">
+
+                        Investment-Oriented Spending
+
+                    </option>
+
+
+                    <option value="Low Transaction Activity">
+
+                        Low Transaction Activity
+
+                    </option>
+
+                </select>
+
+
+                <small
+                    id="transactionSuggestionText"
+                    class="suggestion-label">
+
+                    The system will suggest a spending pattern.
+
+                </small>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- =================================================
+             CALCULATED FINANCIAL DETAILS
+        ================================================== -->
+
+        <h5 class="section-title mt-4">
+
+            <i class="fa-solid fa-calculator"></i>
+
+            Calculated Financial Details
+
+        </h5>
+
+        <hr>
+
+
+        <div class="row g-3">
+
+
+            <!-- TOTAL MONTHLY EXPENSES -->
+
+            <div class="col-md-4">
+
+                <label class="form-label">
+
+                    Total Monthly Expenses
+
+                </label>
+
+
+                <input
+                    type="number"
+                    id="Total_Monthly_Expenses"
+                    class="form-control"
+                    name="Total_Monthly_Expenses"
+                    readonly>
+
+            </div>
+
+
+
+            <!-- BUDGET UTILIZATION -->
+
+            <div class="col-md-4">
+
+                <label class="form-label">
+
+                    Budget Utilization (%)
+
+                </label>
+
+
+                <input
+                    type="number"
+                    id="Budget_Utilization"
+                    class="form-control"
+                    name="Budget_Utilization"
+                    readonly>
+
+            </div>
+
+
+
+            <!-- EXPENSE LEVEL -->
+
+            <div class="col-md-4">
+
+                <label class="form-label">
+
+                    Expense Level
+
+                </label>
+
+
+                <input
+                    type="text"
+                    id="Expense_Level"
+                    class="form-control"
+                    readonly>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- =================================================
+             PREDICT BUTTON
+        ================================================== -->
+
+        <div class="text-center mt-5">
+
+            <button
+                type="submit"
+                class="btn btn-success btn-lg px-5">
+
+                <i class="fa-solid fa-chart-line"></i>
+
+                Predict Financial Health
+
+            </button>
+
+        </div>
+
+
+    </form>
+
+</div>
+
+
+
+<!-- =====================================================
+     BOOTSTRAP JAVASCRIPT
+===================================================== -->
+
+<script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js">
+</script>
+
+
+
+<script>
+
+
+/* =========================================================
+   CALCULATE TOTAL EXPENSES
+========================================================= */
+
+function calculateFinance() {
+
+
+    const budget =
+        Number(
+            document.getElementsByName(
+                "Monthly_Budget"
+            )[0].value
+        ) || 0;
+
+
+    const rent =
+        Number(
+            document.getElementsByName(
+                "Rent"
+            )[0].value
+        ) || 0;
+
+
+    const food =
+        Number(
+            document.getElementsByName(
+                "Food"
+            )[0].value
+        ) || 0;
+
+
+    const transport =
+        Number(
+            document.getElementsByName(
+                "Transport"
+            )[0].value
+        ) || 0;
+
+
+    const shopping =
+        Number(
+            document.getElementsByName(
+                "Shopping"
+            )[0].value
+        ) || 0;
+
+
+    const bills =
+        Number(
+            document.getElementsByName(
+                "Bills"
+            )[0].value
+        ) || 0;
+
+
+    const entertainment =
+        Number(
+            document.getElementsByName(
+                "Entertainment"
+            )[0].value
+        ) || 0;
+
+
+    const emi =
+        Number(
+            document.getElementsByName(
+                "EMI"
+            )[0].value
+        ) || 0;
+
+
+    const other =
+        Number(
+            document.getElementsByName(
+                "Other_Expenses"
+            )[0].value
+        ) || 0;
+
+
+
+    /* =====================================================
+       TOTAL EXPENSES
+    ===================================================== */
+
+    const totalExpenses =
+        rent +
+        food +
+        transport +
+        shopping +
+        bills +
+        entertainment +
+        emi +
+        other;
+
+
+    document.getElementById(
+        "Total_Monthly_Expenses"
+    ).value = totalExpenses;
+
+
+
+    /* =====================================================
+       BUDGET UTILIZATION
+    ===================================================== */
+
+    let utilization = 0;
+
+
+    if (budget > 0) {
+
+        utilization =
+            (totalExpenses / budget) * 100;
+
+    }
+
+
+    document.getElementById(
+        "Budget_Utilization"
+    ).value =
+        utilization.toFixed(2);
+
+
+
+    /* =====================================================
+       EXPENSE LEVEL
+    ===================================================== */
+
+    let level = "";
+
+
+    if (utilization < 50) {
+
+        level = "Low";
+
+    }
+
+    else if (utilization <= 80) {
+
+        level = "Medium";
+
+    }
+
+    else {
+
+        level = "High";
+
+    }
+
+
+    document.getElementById(
+        "Expense_Level"
+    ).value = level;
+
+}
+
+
+
+/* =========================================================
+   SUGGEST TRANSACTION HISTORY
+========================================================= */
+
+function suggestTransactionHistory(
+    income,
+    budget,
+    currentSavings
+) {
+
+
+    /*
+       Calculate the budget percentage of income.
+
+       Example:
+
+       Income = ₹50,000
+       Budget = ₹40,000
+
+       Budget ratio = 80%
+    */
+
+    const budgetRatio =
+        income > 0
+            ? budget / income
+            : 0;
+
+
+
+    /*
+       Calculate current savings percentage.
+    */
+
+    const savingsRatio =
+        income > 0
+            ? currentSavings / income
+            : 0;
+
+
+
+    /*
+       Get suggested expense values.
+    */
+
+    const rent =
+        Number(
+            document.getElementsByName(
+                "Rent"
+            )[0].value
+        ) || 0;
+
+
+    const food =
+        Number(
+            document.getElementsByName(
+                "Food"
+            )[0].value
+        ) || 0;
+
+
+    const transport =
+        Number(
+            document.getElementsByName(
+                "Transport"
+            )[0].value
+        ) || 0;
+
+
+    const shopping =
+        Number(
+            document.getElementsByName(
+                "Shopping"
+            )[0].value
+        ) || 0;
+
+
+    const bills =
+        Number(
+            document.getElementsByName(
+                "Bills"
+            )[0].value
+        ) || 0;
+
+
+    const entertainment =
+        Number(
+            document.getElementsByName(
+                "Entertainment"
+            )[0].value
+        ) || 0;
+
+
+    const emi =
+        Number(
+            document.getElementsByName(
+                "EMI"
+            )[0].value
+        ) || 0;
+
+
+
+    /*
+       Calculate total suggested expenses.
+    */
+
+    const totalExpenses =
+        rent +
+        food +
+        transport +
+        shopping +
+        bills +
+        entertainment +
+        emi +
+        (
+            Number(
+                document.getElementsByName(
+                    "Other_Expenses"
+                )[0].value
+            ) || 0
+        );
+
+
+
+    /*
+       Calculate category percentages.
+    */
+
+    let suggestedPattern =
+        "Balanced Spending Pattern";
+
+
+
+    /*
+       Rule 1:
+       If the user's budget is relatively low
+       compared with income, suggest lower
+       transaction activity.
+    */
+
+    if (
+        budgetRatio <= 0.60
+    ) {
+
+        suggestedPattern =
+            "Low Transaction Activity";
+
+    }
+
+
+
+    /*
+       Rule 2:
+       If current savings are high compared
+       with monthly income, suggest
+       investment-oriented spending.
+    */
+
+    else if (
+        savingsRatio >= 0.30
+    ) {
+
+        suggestedPattern =
+            "Investment-Oriented Spending";
+
+    }
+
+
+
+    /*
+       Rule 3:
+       High entertainment spending.
+    */
+
+    else if (
+        totalExpenses > 0 &&
+        entertainment / totalExpenses >= 0.12
+    ) {
+
+        suggestedPattern =
+            "High Entertainment Spending";
+
+    }
+
+
+
+    /*
+       Rule 4:
+       High transport spending.
+    */
+
+    else if (
+        totalExpenses > 0 &&
+        transport / totalExpenses >= 0.15
+    ) {
+
+        suggestedPattern =
+            "High Travel Expenses";
+
+    }
+
+
+
+    /*
+       Rule 5:
+       High food + shopping spending.
+    */
+
+    else if (
+        totalExpenses > 0 &&
+        (food + shopping) / totalExpenses >= 0.30
+    ) {
+
+        suggestedPattern =
+            "Frequent Food & Shopping Expenses";
+
+    }
+
+
+
+    /*
+       Rule 6:
+       High shopping spending.
+    */
+
+    else if (
+        totalExpenses > 0 &&
+        shopping / totalExpenses >= 0.15
+    ) {
+
+        suggestedPattern =
+            "Frequent Online Purchases";
+
+    }
+
+
+
+    /*
+       Rule 7:
+       Essential expenses dominate.
+    */
+
+    else if (
+        totalExpenses > 0 &&
+        (
+            rent +
+            food +
+            bills +
+            emi
+        ) / totalExpenses >= 0.70
+    ) {
+
+        suggestedPattern =
+            "Mostly Essential Expenses";
+
+    }
+
+
+
+    /*
+       Put suggestion into dropdown.
+    */
+
+    const transactionSelect =
+        document.getElementById(
+            "Transaction_History"
+        );
+
+
+    transactionSelect.value =
+        suggestedPattern;
+
+
+
+    /*
+       Display explanation.
+    */
+
+    const suggestionText =
+        document.getElementById(
+            "transactionSuggestionText"
+        );
+
+
+    suggestionText.innerHTML =
+        "<strong>Suggested:</strong> " +
+        suggestedPattern +
+        " — you can change it manually.";
+
+}
+
+
+
+/* =========================================================
+   GENERATE SMART BUDGET
+========================================================= */
+
+function generateSuggestedBudget() {
+
+
+    /* =====================================================
+       GET MAIN INPUTS
+    ===================================================== */
+
+    const income =
+        Number(
+            document.getElementsByName(
+                "Monthly_Income"
+            )[0].value
+        ) || 0;
+
+
+    const budget =
+        Number(
+            document.getElementsByName(
+                "Monthly_Budget"
+            )[0].value
+        ) || 0;
+
+
+    const currentSavings =
+        Number(
+            document.getElementsByName(
+                "Current_Savings"
+            )[0].value
+        ) || 0;
+
+
+
+    /* =====================================================
+       VALIDATE INCOME
+    ===================================================== */
+
+    if (income <= 0) {
+
+        alert(
+            "Please enter your Monthly Income first."
+        );
+
+        return;
+
+    }
+
+
+
+    /* =====================================================
+       VALIDATE BUDGET
+    ===================================================== */
+
+    if (budget <= 0) {
+
+        alert(
+            "Please enter your Monthly Budget first."
+        );
+
+        return;
+
+    }
+
+
+
+    /* =====================================================
+       CHECK BUDGET
+    ===================================================== */
+
+    if (budget > income) {
+
+        const continueChoice =
+            confirm(
+
+                "Your Monthly Budget is greater than " +
+                "your Monthly Income.\n\n" +
+
+                "Do you still want to generate " +
+                "suggested expenses?"
+
+            );
+
+
+        if (!continueChoice) {
+
+            return;
+
+        }
+
+    }
+
+
+
+    /*
+       Current savings is retained as financial
+       information and is also used when suggesting
+       the transaction pattern.
+
+       It does NOT directly reduce the monthly
+       expense budget.
+    */
+
+
+
+    /* =====================================================
+       EXPENSE BUDGET
+    ===================================================== */
+
+    const suggestedExpenseBudget =
+        Math.min(
+            budget,
+            income
+        );
+
+
+
+    /* =====================================================
+       EXPENSE ALLOCATION PERCENTAGES
+
+       Total = 100%
+    ===================================================== */
+
+    const percentages = {
+
+        Rent: 25,
+
+        Food: 12,
+
+        Transport: 10,
+
+        Shopping: 8,
+
+        Bills: 10,
+
+        Entertainment: 5,
+
+        EMI: 12,
+
+        Other_Expenses: 18
+
+    };
+
+
+
+    /* =====================================================
+       CALCULATE EXPENSE AMOUNTS
+    ===================================================== */
+
+    const rentAmount =
+        Math.round(
+            suggestedExpenseBudget *
+            percentages.Rent /
+            100
+        );
+
+
+    const foodAmount =
+        Math.round(
+            suggestedExpenseBudget *
+            percentages.Food /
+            100
+        );
+
+
+    const transportAmount =
+        Math.round(
+            suggestedExpenseBudget *
+            percentages.Transport /
+            100
+        );
+
+
+    const shoppingAmount =
+        Math.round(
+            suggestedExpenseBudget *
+            percentages.Shopping /
+            100
+        );
+
+
+    const billsAmount =
+        Math.round(
+            suggestedExpenseBudget *
+            percentages.Bills /
+            100
+        );
+
+
+    const entertainmentAmount =
+        Math.round(
+            suggestedExpenseBudget *
+            percentages.Entertainment /
+            100
+        );
+
+
+    const emiAmount =
+        Math.round(
+            suggestedExpenseBudget *
+            percentages.EMI /
+            100
+        );
+
+
+    const otherAmount =
+        Math.round(
+            suggestedExpenseBudget *
+            percentages.Other_Expenses /
+            100
+        );
+
+
+
+    /* =====================================================
+       FILL EXPENSE FIELDS
+    ===================================================== */
+
+    document.getElementsByName(
+        "Rent"
+    )[0].value = rentAmount;
+
+
+    document.getElementsByName(
+        "Food"
+    )[0].value = foodAmount;
+
+
+    document.getElementsByName(
+        "Transport"
+    )[0].value = transportAmount;
+
+
+    document.getElementsByName(
+        "Shopping"
+    )[0].value = shoppingAmount;
+
+
+    document.getElementsByName(
+        "Bills"
+    )[0].value = billsAmount;
+
+
+    document.getElementsByName(
+        "Entertainment"
+    )[0].value = entertainmentAmount;
+
+
+    document.getElementsByName(
+        "EMI"
+    )[0].value = emiAmount;
+
+
+    document.getElementsByName(
+        "Other_Expenses"
+    )[0].value = otherAmount;
+
+
+
+    /* =====================================================
+       CALCULATE TOTALS
+    ===================================================== */
+
+    calculateFinance();
+
+
+
+    /* =====================================================
+       SUGGEST TRANSACTION HISTORY
+    ===================================================== */
+
+    suggestTransactionHistory(
+        income,
+        budget,
+        currentSavings
+    );
+
+
+
+    /* =====================================================
+       DISPLAY SUCCESS MESSAGE
+    ===================================================== */
+
+    const message =
+        document.getElementById(
+            "budgetMessage"
+        );
+
+
+    message.style.display =
+        "block";
+
+
+    message.innerHTML =
+
+        "<strong>" +
+
+        "<i class='fa-solid fa-wand-magic-sparkles'></i> " +
+
+        "Smart Budget Generated Successfully!" +
+
+        "</strong><br>" +
+
+        "₹" +
+
+        suggestedExpenseBudget.toLocaleString(
+            "en-IN"
+        ) +
+
+        " has been distributed across your " +
+
+        "expense categories." +
+
+        "<br>" +
+
+        "<strong>Transaction Pattern:</strong> " +
+
+        document.getElementById(
+            "Transaction_History"
+        ).value +
+
+        "<br>" +
+
+        "<small>" +
+
+        "You can manually edit the expense amounts " +
+
+        "or change the transaction pattern." +
+
+        "</small>";
+
+}
+
+
+
+/* =========================================================
+   PAGE INITIALIZATION
+========================================================= */
+
+document.addEventListener(
+    "DOMContentLoaded",
+    function () {
+
+
+        /* =================================================
+           EXPENSE INPUTS
+        ================================================= */
+
+        const expenseInputs =
+            document.querySelectorAll(
+                ".expense"
+            );
+
+
+        expenseInputs.forEach(
+            function (input) {
+
+                input.addEventListener(
+                    "input",
+                    calculateFinance
+                );
+
+            }
+        );
+
+
+
+        /* =================================================
+           MONTHLY BUDGET
+        ================================================= */
+
+        const budgetInput =
+            document.querySelector(
+                "input[name='Monthly_Budget']"
+            );
+
+
+        budgetInput.addEventListener(
+            "input",
+            calculateFinance
+        );
+
+
+
+        /* =================================================
+           GENERATE BUTTON
+        ================================================= */
+
+        const generateButton =
+            document.getElementById(
+                "generateBudgetBtn"
+            );
+
+
+        generateButton.addEventListener(
+            "click",
+            generateSuggestedBudget
+        );
+
+
+    }
+
+);
+
+</script>
+
+
+</body>
+
+</html>

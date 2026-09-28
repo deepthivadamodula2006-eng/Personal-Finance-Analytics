@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Create Account | Finance Analytics</title>
+
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+        rel="stylesheet"
+    >
+
+    <link
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+        rel="stylesheet"
+    >
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(
+                135deg,
+                #f8f8fb,
+                #eef1fb
+            );
+            color: #202b49;
+        }
+
+        .navbar {
+            height: 94px;
+            background: #171d2d;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.18);
+        }
+
+        .navbar-brand {
+            color: white !important;
+            font-size: 30px;
+            font-weight: 700;
+            margin-left: 25px;
+        }
+
+        .navbar-brand i {
+            margin-right: 10px;
+        }
+
+        .home-link {
+            color: white !important;
+            font-size: 16px;
+            font-weight: 600;
+            margin-right: 30px;
+            text-decoration: none;
+        }
+
+        .home-link:hover {
+            color: #4b6ff5 !important;
+        }
+
+        .register-section {
+            min-height: calc(100vh - 94px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 40px 20px;
+        }
+
+        .register-container {
+            width: 100%;
+            max-width: 1050px;
+            background: white;
+            border-radius: 25px;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(35,48,80,0.15);
+            display: flex;
+            min-height: 620px;
+        }
+
+        /* LEFT */
+
+        .register-left {
+            width: 50%;
+            background: linear-gradient(
+                145deg,
+                #1b2338,
+                #29375c
+            );
+            color: white;
+            padding: 60px 55px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .finance-icon {
+            width: 70px;
+            height: 70px;
+            background: #4165e8;
+            border-radius: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 30px;
+            margin-bottom: 28px;
+            box-shadow: 0 10px 25px rgba(63,99,232,0.3);
+        }
+
+        .register-left h1 {
+            font-size: 42px;
+            font-weight: 700;
+            line-height: 1.15;
+            margin-bottom: 20px;
+        }
+
+        .register-left h1 span {
+            color: #6e8cff;
+        }
+
+        .register-left p {
+            font-size: 16px;
+            line-height: 1.7;
+            color: #d3d8e6;
+        }
+
+        .benefits {
+            margin-top: 30px;
+        }
+
+        .benefit {
+            display: flex;
+            align-items: center;
+            margin-bottom: 17px;
+            color: #e3e6ef;
+        }
+
+        .benefit i {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: rgba(65,101,232,0.25);
+            color: #6e8cff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 13px;
+        }
+
+        /* RIGHT */
+
+        .register-right {
+            width: 50%;
+            padding: 50px 65px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .register-title {
+            font-size: 31px;
+            font-weight: 700;
+            margin-bottom: 7px;
+        }
+
+        .register-subtitle {
+            color: #777f92;
+            margin-bottom: 28px;
+        }
+
+        .form-label {
+            font-weight: 600;
+            color: #303a54;
+            margin-bottom: 8px;
+        }
+
+        .input-group {
+            margin-bottom: 18px;
+        }
+
+        .input-group-text {
+            background: #f4f6fb;
+            border: 1px solid #e0e4ee;
+            border-right: none;
+            color: #4165e8;
+        }
+
+        .form-control {
+            height: 50px;
+            border: 1px solid #e0e4ee;
+            border-left: none;
+            background: #f9faff;
+        }
+
+        .form-control:focus {
+            box-shadow: none;
+            border-color: #4165e8;
+            background: white;
+        }
+
+        .register-btn {
+            width: 100%;
+            height: 53px;
+            border: none;
+            border-radius: 10px;
+            background: #4165e8;
+            color: white;
+            font-size: 16px;
+            font-weight: 700;
+            margin-top: 8px;
+            box-shadow: 0 8px 20px rgba(65,101,232,0.25);
+            transition: 0.3s;
+        }
+
+        .register-btn:hover {
+            background: #3154d5;
+            transform: translateY(-2px);
+        }
+
+        .login-text {
+            text-align: center;
+            margin-top: 24px;
+            color: #72798a;
+            font-size: 14px;
+        }
+
+        .login-text a {
+            color: #4165e8;
+            font-weight: 700;
+            text-decoration: none;
+        }
+
+        .error-message {
+            background: #fff0f0;
+            color: #d33;
+            border-radius: 8px;
+            padding: 10px 12px;
+            margin-bottom: 18px;
+            font-size: 14px;
+        }
+
+        .success-message {
+            background: #eefaf2;
+            color: #218838;
+            border-radius: 8px;
+            padding: 10px 12px;
+            margin-bottom: 18px;
+            font-size: 14px;
+        }
+
+        @media (max-width: 900px) {
+
+            .register-container {
+                max-width: 600px;
+            }
+
+            .register-left {
+                display: none;
+            }
+
+            .register-right {
+                width: 100%;
+                padding: 50px 45px;
+            }
+        }
+
+        @media (max-width: 576px) {
+
+            .navbar {
+                height: 75px;
+            }
+
+            .navbar-brand {
+                font-size: 22px;
+                margin-left: 5px;
+            }
+
+            .home-link {
+                margin-right: 5px;
+                font-size: 14px;
+            }
+
+            .register-section {
+                min-height: calc(100vh - 75px);
+            }
+
+            .register-right {
+                padding: 40px 25px;
+            }
+
+            .register-title {
+                font-size: 27px;
+            }
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+
+    <nav class="navbar navbar-expand">
+
+        <div class="container-fluid">
+
+            <a class="navbar-brand" href="{{ url_for('login') }}">
+                <i class="fas fa-wallet"></i>
+                Finance Analytics
+            </a>
+
+            <a class="home-link" href="{{ url_for('login') }}">
+                <i class="fas fa-arrow-left"></i>
+                Login
+            </a>
+
+        </div>
+
+    </nav>
+
+
+    <!-- REGISTER -->
+
+    <section class="register-section">
+
+        <div class="register-container">
+
+            <!-- LEFT -->
+
+            <div class="register-left">
+
+                <div class="finance-icon">
+                    <i class="fas fa-user-plus"></i>
+                </div>
+
+                <h1>
+                    Start Your
+                    <span>Financial Journey.</span>
+                </h1>
+
+                <p>
+                    Create your personal Finance Analytics account
+                    and take control of your financial future.
+                </p>
+
+                <div class="benefits">
+
+                    <div class="benefit">
+                        <i class="fas fa-chart-pie"></i>
+                        <span>Analyze your financial health</span>
+                    </div>
+
+                    <div class="benefit">
+                        <i class="fas fa-wallet"></i>
+                        <span>Manage your monthly budget</span>
+                    </div>
+
+                    <div class="benefit">
+                        <i class="fas fa-lightbulb"></i>
+                        <span>Receive personalized insights</span>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- RIGHT -->
+
+            <div class="register-right">
+
+                <h2 class="register-title">
+                    Create Account
+                </h2>
+
+                <p class="register-subtitle">
+                    Enter your details to get started.
+                </p>
+
+
+                {% if error %}
+
+                <div class="error-message">
+                    <i class="fas fa-circle-exclamation"></i>
+                    {{ error }}
+                </div>
+
+                {% endif %}
+
+
+                <form
+                    action="{{ url_for('register') }}"
+                    method="POST"
+                >
+
+                    <!-- NAME -->
+
+                    <label class="form-label">
+                        Full Name
+                    </label>
+
+                    <div class="input-group">
+
+                        <span class="input-group-text">
+                            <i class="fas fa-user"></i>
+                        </span>
+
+                        <input
+                            type="text"
+                            name="name"
+                            class="form-control"
+                            placeholder="Enter your full name"
+                            required
+                        >
+
+                    </div>
+
+
+                    <!-- EMAIL -->
+
+                    <label class="form-label">
+                        Email Address
+                    </label>
+
+                    <div class="input-group">
+
+                        <span class="input-group-text">
+                            <i class="fas fa-envelope"></i>
+                        </span>
+
+                        <input
+                            type="email"
+                            name="email"
+                            class="form-control"
+                            placeholder="Enter your email"
+                            required
+                        >
+
+                    </div>
+
+
+                    <!-- PASSWORD -->
+
+                    <label class="form-label">
+                        Password
+                    </label>
+
+                    <div class="input-group">
+
+                        <span class="input-group-text">
+                            <i class="fas fa-lock"></i>
+                        </span>
+
+                        <input
+                            type="password"
+                            name="password"
+                            class="form-control"
+                            placeholder="Create a password"
+                            minlength="6"
+                            required
+                        >
+
+                    </div>
+
+
+                    <!-- CONFIRM PASSWORD -->
+
+                    <label class="form-label">
+                        Confirm Password
+                    </label>
+
+                    <div class="input-group">
+
+                        <span class="input-group-text">
+                            <i class="fas fa-shield-halved"></i>
+                        </span>
+
+                        <input
+                            type="password"
+                            name="confirm_password"
+                            class="form-control"
+                            placeholder="Confirm your password"
+                            minlength="6"
+                            required
+                        >
+
+                    </div>
+
+
+                    <!-- SUBMIT -->
+
+                    <button
+                        type="submit"
+                        class="register-btn"
+                    >
+
+                        <i class="fas fa-user-plus"></i>
+                        Create Account
+
+                    </button>
+
+                </form>
+
+
+                <div class="login-text">
+
+                    Already have an account?
+
+                    <a href="{{ url_for('login') }}">
+                        Login
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+</body>
+
+</html>

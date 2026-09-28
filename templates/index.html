@@ -1,0 +1,1520 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Finance Analytics</title>
+
+
+    <!-- ================= BOOTSTRAP ================= -->
+
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+        rel="stylesheet"
+    >
+
+
+    <!-- ================= FONT AWESOME ================= -->
+
+    <link
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+        rel="stylesheet"
+    >
+
+
+    <style>
+
+        /* =====================================================
+           GLOBAL
+        ===================================================== */
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+
+        body {
+
+            font-family: Arial, sans-serif;
+
+            background: #f5f7fb;
+
+            color: #202b49;
+
+            overflow-x: hidden;
+
+        }
+
+
+        /* =====================================================
+           NAVBAR
+        ===================================================== */
+
+        .navbar {
+
+            background: #171d2d;
+
+            min-height: 75px;
+
+            padding: 0 30px;
+
+            box-shadow:
+                0 5px 20px rgba(0, 0, 0, 0.15);
+
+        }
+
+
+        .navbar-brand {
+
+            color: white !important;
+
+            font-size: 24px;
+
+            font-weight: 700;
+
+            text-decoration: none;
+
+        }
+
+
+        .navbar-brand i {
+
+            margin-right: 8px;
+
+            color: #6f8cff;
+
+        }
+
+
+        .navbar-nav {
+
+            align-items: center;
+
+        }
+
+
+        .nav-item {
+
+            margin-left: 5px;
+
+        }
+
+
+        .nav-link {
+
+            color: #dfe4f2 !important;
+
+            font-size: 14px;
+
+            font-weight: 600;
+
+            padding: 10px 12px !important;
+
+            border-radius: 8px;
+
+            transition: 0.25s;
+
+            text-decoration: none;
+
+        }
+
+
+        .nav-link:hover {
+
+            background:
+                rgba(255, 255, 255, 0.08);
+
+            color: white !important;
+
+        }
+
+
+        .nav-link i {
+
+            margin-right: 6px;
+
+        }
+
+
+        /* =====================================================
+           USER NAME
+        ===================================================== */
+
+        .user-name {
+
+            color: white !important;
+
+            background:
+                rgba(65, 101, 232, 0.20);
+
+            border-radius: 20px;
+
+            padding: 8px 14px !important;
+
+            margin-left: 8px;
+
+        }
+
+
+        .user-name i {
+
+            color: #7893ff;
+
+        }
+
+
+        .user-name:hover {
+
+            background:
+                rgba(65, 101, 232, 0.35);
+
+            color: white !important;
+
+        }
+
+
+        /* =====================================================
+           LOGOUT
+        ===================================================== */
+
+        .logout-link {
+
+            color: #ffb3b3 !important;
+
+        }
+
+
+        .logout-link:hover {
+
+            background:
+                rgba(255, 80, 80, 0.12);
+
+            color: #ffdddd !important;
+
+        }
+
+
+        /* =====================================================
+           HERO
+        ===================================================== */
+
+        .hero {
+
+            min-height:
+                calc(100vh - 75px);
+
+            display: flex;
+
+            align-items: center;
+
+            padding: 70px 8%;
+
+            background:
+
+                radial-gradient(
+                    circle at top right,
+                    rgba(65, 101, 232, 0.12),
+                    transparent 35%
+                ),
+
+                #f5f7fb;
+
+        }
+
+
+        .hero-content {
+
+            max-width: 650px;
+
+        }
+
+
+        .welcome {
+
+            color: #4165e8;
+
+            font-size: 16px;
+
+            font-weight: 700;
+
+            margin-bottom: 15px;
+
+        }
+
+
+        .welcome i {
+
+            margin-right: 7px;
+
+        }
+
+
+        .hero h1 {
+
+            font-size: 58px;
+
+            line-height: 1.08;
+
+            font-weight: 800;
+
+            color: #18213a;
+
+            margin-bottom: 20px;
+
+        }
+
+
+        .hero h1 span {
+
+            color: #4165e8;
+
+        }
+
+
+        .hero p {
+
+            font-size: 18px;
+
+            line-height: 1.7;
+
+            color: #687087;
+
+            max-width: 600px;
+
+            margin-bottom: 35px;
+
+        }
+
+
+        /* =====================================================
+           BUTTONS
+        ===================================================== */
+
+        .hero-buttons {
+
+            display: flex;
+
+            gap: 15px;
+
+            flex-wrap: wrap;
+
+        }
+
+
+        .primary-btn {
+
+            text-decoration: none;
+
+            background: #4165e8;
+
+            color: white;
+
+            padding: 14px 25px;
+
+            border-radius: 10px;
+
+            font-weight: 700;
+
+            transition: 0.3s;
+
+            display: inline-flex;
+
+            align-items: center;
+
+            gap: 9px;
+
+            box-shadow:
+                0 10px 25px rgba(65, 101, 232, 0.22);
+
+        }
+
+
+        .primary-btn:hover {
+
+            background: #3154d5;
+
+            color: white;
+
+            transform: translateY(-2px);
+
+        }
+
+
+        .secondary-btn {
+
+            text-decoration: none;
+
+            background: white;
+
+            color: #29344f;
+
+            border: 1px solid #dce1ed;
+
+            padding: 14px 25px;
+
+            border-radius: 10px;
+
+            font-weight: 700;
+
+            transition: 0.3s;
+
+            display: inline-flex;
+
+            align-items: center;
+
+            gap: 9px;
+
+        }
+
+
+        .secondary-btn:hover {
+
+            background: #eef1fa;
+
+            color: #29344f;
+
+            transform: translateY(-2px);
+
+        }
+
+
+        /* =====================================================
+           FINANCIAL CARD
+        ===================================================== */
+
+        .finance-card {
+
+            background: white;
+
+            border-radius: 25px;
+
+            padding: 35px;
+
+            box-shadow:
+                0 20px 60px rgba(35, 48, 80, 0.12);
+
+            max-width: 440px;
+
+            margin-left: auto;
+
+        }
+
+
+        .finance-card-header {
+
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            margin-bottom: 30px;
+
+        }
+
+
+        .finance-card-title {
+
+            font-size: 18px;
+
+            font-weight: 700;
+
+            color: #26314c;
+
+        }
+
+
+        .finance-card-icon {
+
+            width: 48px;
+
+            height: 48px;
+
+            border-radius: 14px;
+
+            background: #edf1ff;
+
+            color: #4165e8;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            font-size: 21px;
+
+        }
+
+
+        /* =====================================================
+           STAT BOX
+        ===================================================== */
+
+        .stat-box {
+
+            background: #f8f9fd;
+
+            border-radius: 15px;
+
+            padding: 18px;
+
+            margin-bottom: 13px;
+
+        }
+
+
+        .stat-box:last-child {
+
+            margin-bottom: 0;
+
+        }
+
+
+        .stat-label {
+
+            color: #7c8498;
+
+            font-size: 13px;
+
+            margin-bottom: 5px;
+
+        }
+
+
+        .stat-value {
+
+            font-size: 23px;
+
+            font-weight: 700;
+
+            color: #27314c;
+
+        }
+
+
+        .stat-icon {
+
+            width: 40px;
+
+            height: 40px;
+
+            border-radius: 10px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            background: #eaf0ff;
+
+            color: #4165e8;
+
+        }
+
+
+        /* =====================================================
+           FEATURES
+        ===================================================== */
+
+        .features {
+
+            padding: 80px 8%;
+
+            background: white;
+
+        }
+
+
+        .section-title {
+
+            text-align: center;
+
+            margin-bottom: 50px;
+
+        }
+
+
+        .section-title h2 {
+
+            font-size: 38px;
+
+            font-weight: 800;
+
+            color: #1d2741;
+
+        }
+
+
+        .section-title p {
+
+            color: #737b90;
+
+            margin-top: 10px;
+
+        }
+
+
+        .feature-card {
+
+            background: #f8f9fd;
+
+            border-radius: 18px;
+
+            padding: 30px;
+
+            height: 100%;
+
+            transition: 0.3s;
+
+            border: 1px solid #eef0f6;
+
+        }
+
+
+        .feature-card:hover {
+
+            transform: translateY(-5px);
+
+            box-shadow:
+                0 15px 35px rgba(35, 48, 80, 0.09);
+
+        }
+
+
+        .feature-icon {
+
+            width: 55px;
+
+            height: 55px;
+
+            border-radius: 15px;
+
+            background: #eaf0ff;
+
+            color: #4165e8;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            font-size: 22px;
+
+            margin-bottom: 20px;
+
+        }
+
+
+        .feature-card h4 {
+
+            font-size: 20px;
+
+            font-weight: 700;
+
+            margin-bottom: 10px;
+
+        }
+
+
+        .feature-card p {
+
+            color: #737b90;
+
+            line-height: 1.6;
+
+            margin: 0;
+
+        }
+
+
+        /* =====================================================
+           FOOTER
+        ===================================================== */
+
+        footer {
+
+            background: #171d2d;
+
+            color: #aeb6c9;
+
+            text-align: center;
+
+            padding: 25px;
+
+        }
+
+
+        footer p {
+
+            margin: 0;
+
+        }
+
+
+        /* =====================================================
+           RESPONSIVE
+        ===================================================== */
+
+        @media (max-width: 992px) {
+
+            .navbar {
+
+                padding: 10px 20px;
+
+            }
+
+
+            .navbar-nav {
+
+                align-items: flex-start;
+
+            }
+
+
+            .hero {
+
+                padding: 60px 6%;
+
+            }
+
+
+            .hero h1 {
+
+                font-size: 45px;
+
+            }
+
+
+            .finance-card {
+
+                margin: 40px auto 0;
+
+            }
+
+        }
+
+
+        @media (max-width: 576px) {
+
+            .hero {
+
+                padding: 45px 25px;
+
+            }
+
+
+            .hero h1 {
+
+                font-size: 38px;
+
+            }
+
+
+            .hero p {
+
+                font-size: 16px;
+
+            }
+
+
+            .finance-card {
+
+                padding: 25px;
+
+            }
+
+
+            .features {
+
+                padding: 60px 25px;
+
+            }
+
+
+            .section-title h2 {
+
+                font-size: 30px;
+
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<!-- =====================================================
+     NAVBAR
+===================================================== -->
+
+<nav class="navbar navbar-expand-lg">
+
+    <div class="container-fluid">
+
+
+        <!-- BRAND -->
+
+        <a
+            class="navbar-brand"
+            href="{{ url_for('home') }}"
+        >
+
+            <i class="fas fa-wallet"></i>
+
+            Finance Analytics
+
+        </a>
+
+
+        <!-- MOBILE BUTTON -->
+
+        <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#mainNavbar"
+            aria-controls="mainNavbar"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+        >
+
+            <span class="navbar-toggler-icon"></span>
+
+        </button>
+
+
+        <!-- NAVIGATION -->
+
+        <div
+            class="collapse navbar-collapse"
+            id="mainNavbar"
+        >
+
+            <ul class="navbar-nav ms-auto">
+
+
+                <!-- HOME -->
+
+                <li class="nav-item">
+
+                    <a
+                        class="nav-link"
+                        href="{{ url_for('home') }}"
+                    >
+
+                        <i class="fas fa-house"></i>
+
+                        Home
+
+                    </a>
+
+                </li>
+
+
+                <!-- PREDICT -->
+
+                <li class="nav-item">
+
+                    <a
+                        class="nav-link"
+                        href="{{ url_for('predict_page') }}"
+                    >
+
+                        <i class="fas fa-brain"></i>
+
+                        Predict Finance
+
+                    </a>
+
+                </li>
+
+
+                <!-- DASHBOARD -->
+
+                <li class="nav-item">
+
+                    <a
+                        class="nav-link"
+                        href="{{ url_for('dashboard') }}"
+                    >
+
+                        <i class="fas fa-chart-line"></i>
+
+                        Dashboard
+
+                    </a>
+
+                </li>
+
+
+                <!-- BUDGET -->
+
+                <li class="nav-item">
+
+                    <a
+                        class="nav-link"
+                        href="{{ url_for('budget') }}"
+                    >
+
+                        <i class="fas fa-wallet"></i>
+
+                        Budget
+
+                    </a>
+
+                </li>
+
+
+                <!-- RECOMMENDATIONS -->
+
+                <li class="nav-item">
+
+                    <a
+                        class="nav-link"
+                        href="{{ url_for('recommendations') }}"
+                    >
+
+                        <i class="fas fa-lightbulb"></i>
+
+                        Recommendations
+
+                    </a>
+
+                </li>
+
+
+                <!-- SUMMARY -->
+
+                <li class="nav-item">
+
+                    <a
+                        class="nav-link"
+                        href="{{ url_for('summary') }}"
+                    >
+
+                        <i class="fas fa-file-lines"></i>
+
+                        Summary
+
+                    </a>
+
+                </li>
+
+
+                <!-- PREDICTION HISTORY -->
+
+                <li class="nav-item">
+
+                    <a
+                        class="nav-link"
+                        href="{{ url_for('history') }}"
+                    >
+
+                        <i class="fas fa-clock-rotate-left"></i>
+
+                        Prediction History
+
+                    </a>
+
+                </li>
+
+
+                <!-- ABOUT -->
+
+                <li class="nav-item">
+
+                    <a
+                        class="nav-link"
+                        href="{{ url_for('about') }}"
+                    >
+
+                        <i class="fas fa-circle-info"></i>
+
+                        About
+
+                    </a>
+
+                </li>
+
+
+                <!-- USER -->
+
+                <li class="nav-item">
+
+                    <a
+                        class="nav-link user-name"
+                        href="{{ url_for('account') }}"
+                    >
+
+                        <i class="fas fa-user-circle"></i>
+
+                        {{ session.get('user_name', 'User') }}
+
+                    </a>
+
+                </li>
+
+
+                <!-- LOGOUT -->
+
+                <li class="nav-item">
+
+                    <a
+                        class="nav-link logout-link"
+                        href="{{ url_for('logout') }}"
+                    >
+
+                        <i class="fas fa-right-from-bracket"></i>
+
+                        Logout
+
+                    </a>
+
+                </li>
+
+
+            </ul>
+
+        </div>
+
+    </div>
+
+</nav>
+
+
+<!-- =====================================================
+     HERO SECTION
+===================================================== -->
+
+<section class="hero">
+
+    <div class="container-fluid">
+
+        <div class="row align-items-center">
+
+
+            <!-- ================= LEFT ================= -->
+
+            <div class="col-lg-7">
+
+                <div class="hero-content">
+
+
+                    <div class="welcome">
+
+                        <i class="fas fa-hand-sparkles"></i>
+
+                        Welcome,
+
+                        {{ session.get('user_name', 'User') }}!
+
+                    </div>
+
+
+                    <h1>
+
+                        Take Control of
+
+                        <span>
+                            Your Finances.
+                        </span>
+
+                    </h1>
+
+
+                    <p>
+
+                        Make smarter financial decisions with
+                        intelligent predictions, personalized
+                        recommendations, budget analysis and
+                        a complete view of your financial health.
+
+                    </p>
+
+
+                    <div class="hero-buttons">
+
+
+                        <!-- START PREDICTION -->
+
+                        <a
+                            href="{{ url_for('predict_page') }}"
+                            class="primary-btn"
+                        >
+
+                            <i
+                                class="fas fa-wand-magic-sparkles"
+                            ></i>
+
+                            Start Prediction
+
+                        </a>
+
+
+                        <!-- DASHBOARD -->
+
+                        <a
+                            href="{{ url_for('dashboard') }}"
+                            class="secondary-btn"
+                        >
+
+                            <i
+                                class="fas fa-chart-pie"
+                            ></i>
+
+                            View Dashboard
+
+                        </a>
+
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- ================= RIGHT ================= -->
+
+            <div class="col-lg-5">
+
+                <div class="finance-card">
+
+
+                    <!-- CARD HEADER -->
+
+                    <div class="finance-card-header">
+
+                        <div class="finance-card-title">
+
+                            Financial Overview
+
+                        </div>
+
+
+                        <div class="finance-card-icon">
+
+                            <i
+                                class="fas fa-chart-column"
+                            ></i>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- ================= INCOME ================= -->
+
+                    <div class="stat-box">
+
+                        <div
+                            class="d-flex justify-content-between align-items-center"
+                        >
+
+                            <div>
+
+                                <div class="stat-label">
+
+                                    Monthly Income
+
+                                </div>
+
+                                <div class="stat-value">
+
+                                    {% if result and result.get('income') is not none %}
+
+                                        ₹ {{ result.get('income') }}
+
+                                    {% else %}
+
+                                        —
+
+                                    {% endif %}
+
+                                </div>
+
+                            </div>
+
+
+                            <div class="stat-icon">
+
+                                <i
+                                    class="fas fa-arrow-trend-up"
+                                ></i>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- ================= EXPENSE ================= -->
+
+                    <div class="stat-box">
+
+                        <div
+                            class="d-flex justify-content-between align-items-center"
+                        >
+
+                            <div>
+
+                                <div class="stat-label">
+
+                                    Monthly Expenses
+
+                                </div>
+
+                                <div class="stat-value">
+
+                                    {% if result and result.get('expenses') is not none %}
+
+                                        ₹ {{ result.get('expenses') }}
+
+                                    {% else %}
+
+                                        —
+
+                                    {% endif %}
+
+                                </div>
+
+                            </div>
+
+
+                            <div class="stat-icon">
+
+                                <i
+                                    class="fas fa-arrow-trend-down"
+                                ></i>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- ================= SAVINGS ================= -->
+
+                    <div class="stat-box">
+
+                        <div
+                            class="d-flex justify-content-between align-items-center"
+                        >
+
+                            <div>
+
+                                <div class="stat-label">
+
+                                    Savings
+
+                                </div>
+
+                                <div class="stat-value">
+
+                                    {% if result and result.get('savings') is not none %}
+
+                                        ₹ {{ result.get('savings') }}
+
+                                    {% else %}
+
+                                        —
+
+                                    {% endif %}
+
+                                </div>
+
+                            </div>
+
+
+                            <div class="stat-icon">
+
+                                <i
+                                    class="fas fa-piggy-bank"
+                                ></i>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- ================= SCORE ================= -->
+
+                    <div class="stat-box">
+
+                        <div
+                            class="d-flex justify-content-between align-items-center"
+                        >
+
+                            <div>
+
+                                <div class="stat-label">
+
+                                    Financial Health
+
+                                </div>
+
+                                <div class="stat-value">
+
+                                    {% if result and result.get('score') is not none %}
+
+                                        {{ result.get('score') }}
+
+                                    {% else %}
+
+                                        —
+
+                                    {% endif %}
+
+                                </div>
+
+                            </div>
+
+
+                            <div class="stat-icon">
+
+                                <i
+                                    class="fas fa-heart-pulse"
+                                ></i>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     FEATURES
+===================================================== -->
+
+<section class="features">
+
+    <div class="container-fluid">
+
+
+        <!-- SECTION TITLE -->
+
+        <div class="section-title">
+
+            <h2>
+
+                Everything You Need
+
+            </h2>
+
+
+            <p>
+
+                Understand, manage and improve your
+                financial health.
+
+            </p>
+
+        </div>
+
+
+        <div class="row g-4">
+
+
+            <!-- ================= PREDICTION ================= -->
+
+            <div class="col-md-6 col-lg-3">
+
+                <div class="feature-card">
+
+                    <div class="feature-icon">
+
+                        <i class="fas fa-brain"></i>
+
+                    </div>
+
+
+                    <h4>
+
+                        Smart Prediction
+
+                    </h4>
+
+
+                    <p>
+
+                        Analyze your financial information
+                        and generate intelligent financial
+                        predictions.
+
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- ================= DASHBOARD ================= -->
+
+            <div class="col-md-6 col-lg-3">
+
+                <div class="feature-card">
+
+                    <div class="feature-icon">
+
+                        <i class="fas fa-chart-line"></i>
+
+                    </div>
+
+
+                    <h4>
+
+                        Financial Dashboard
+
+                    </h4>
+
+
+                    <p>
+
+                        View your income, expenses, savings
+                        and financial health in one place.
+
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- ================= BUDGET ================= -->
+
+            <div class="col-md-6 col-lg-3">
+
+                <div class="feature-card">
+
+                    <div class="feature-icon">
+
+                        <i class="fas fa-wallet"></i>
+
+                    </div>
+
+
+                    <h4>
+
+                        Budget Planning
+
+                    </h4>
+
+
+                    <p>
+
+                        Understand your spending and create
+                        a better balance between expenses
+                        and savings.
+
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- ================= RECOMMENDATIONS ================= -->
+
+            <div class="col-md-6 col-lg-3">
+
+                <div class="feature-card">
+
+                    <div class="feature-icon">
+
+                        <i class="fas fa-lightbulb"></i>
+
+                    </div>
+
+
+                    <h4>
+
+                        Personalized Insights
+
+                    </h4>
+
+
+                    <p>
+
+                        Get recommendations designed to
+                        help improve your overall financial
+                        health.
+
+                    </p>
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     FOOTER
+===================================================== -->
+
+<footer>
+
+    <p>
+
+        © 2026 Finance Analytics.
+        All rights reserved.
+
+    </p>
+
+</footer>
+
+
+<!-- =====================================================
+     BOOTSTRAP JAVASCRIPT
+===================================================== -->
+
+<script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+></script>
+
+
+</body>
+
+</html>

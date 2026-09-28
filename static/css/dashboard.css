@@ -1,0 +1,743 @@
+/* =====================================================
+   DASHBOARD GLOBAL STYLES
+===================================================== */
+
+body{
+
+    background:#f4f7fc;
+
+    font-family:'Poppins',sans-serif;
+
+    color:#333;
+
+}
+
+/* =====================================================
+   NAVBAR
+===================================================== */
+
+.navbar{
+
+    background:linear-gradient(90deg,#0f172a,#1e3a8a)!important;
+
+    padding:15px 0;
+
+}
+
+.navbar-brand{
+
+    font-size:24px;
+
+    font-weight:700;
+
+    letter-spacing:.5px;
+
+}
+
+.navbar .btn{
+
+    border-radius:30px;
+
+    padding:8px 22px;
+
+    font-weight:600;
+
+}
+
+/* =====================================================
+   DASHBOARD BANNER
+===================================================== */
+
+.dashboard-banner{
+
+    background:linear-gradient(135deg,#2563eb,#38bdf8);
+
+    color:white;
+
+    border-radius:20px;
+
+    overflow:hidden;
+
+}
+
+.dashboard-banner h2{
+
+    font-size:34px;
+
+    font-weight:700;
+
+}
+
+.dashboard-banner p{
+
+    font-size:17px;
+
+    line-height:1.7;
+
+}
+
+.dashboard-banner img{
+
+    max-height:250px;
+
+    animation:float 3s ease-in-out infinite;
+
+}
+
+/* Floating Animation */
+
+@keyframes float{
+
+    0%{
+
+        transform:translateY(0);
+
+    }
+
+    50%{
+
+        transform:translateY(-10px);
+
+    }
+
+    100%{
+
+        transform:translateY(0);
+
+    }
+
+}
+
+/* =====================================================
+   SUMMARY CARDS
+===================================================== */
+
+.dashboard-card{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:20px;
+
+    background:#fff;
+
+    border-radius:18px;
+
+    padding:25px;
+
+    box-shadow:0 10px 30px rgba(0,0,0,.08);
+
+    transition:.35s;
+
+    height:100%;
+
+}
+
+.dashboard-card:hover{
+
+    transform:translateY(-8px);
+
+    box-shadow:0 18px 40px rgba(0,0,0,.15);
+
+}
+
+.card-icon{
+
+    width:75px;
+
+    height:75px;
+
+    border-radius:50%;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    font-size:30px;
+
+    color:#fff;
+
+    flex-shrink:0;
+
+}
+
+.card-content h6{
+
+    margin:0;
+
+    color:#666;
+
+    font-size:15px;
+
+    font-weight:600;
+
+}
+
+.card-content h2{
+
+    margin:8px 0;
+
+    font-size:30px;
+
+    font-weight:700;
+
+}
+
+.card-content small{
+
+    color:#888;
+
+}
+
+/* ==========================================
+   Income
+========================================== */
+
+.income-card{
+
+    border-left:6px solid #22c55e;
+
+}
+
+.income-card .card-icon{
+
+    background:linear-gradient(135deg,#22c55e,#16a34a);
+
+}
+
+/* ==========================================
+   Expense
+========================================== */
+
+.expense-card{
+
+    border-left:6px solid #ef4444;
+
+}
+
+.expense-card .card-icon{
+
+    background:linear-gradient(135deg,#ef4444,#dc2626);
+
+}
+
+/* ==========================================
+   Savings
+========================================== */
+
+.savings-card{
+
+    border-left:6px solid #2563eb;
+
+}
+
+.savings-card .card-icon{
+
+    background:linear-gradient(135deg,#3b82f6,#2563eb);
+
+}
+
+/* ==========================================
+   Score
+========================================== */
+
+.score-card{
+
+    border-left:6px solid #f59e0b;
+
+}
+
+.score-card .card-icon{
+
+    background:linear-gradient(135deg,#f59e0b,#d97706);
+
+}
+
+/* =====================================================
+   CHART CARDS
+===================================================== */
+
+.card{
+
+    border:none;
+
+    border-radius:18px;
+
+    overflow:hidden;
+
+    box-shadow:0 10px 30px rgba(0,0,0,.08);
+
+    transition:.3s;
+
+}
+
+.card:hover{
+
+    transform:translateY(-5px);
+
+    box-shadow:0 18px 40px rgba(0,0,0,.12);
+
+}
+
+.card-header{
+
+    font-size:18px;
+
+    font-weight:600;
+
+    padding:15px 20px;
+
+    border:none;
+
+}
+
+.card-body{
+
+    background:#fff;
+
+    padding:25px;
+
+}
+
+/* =====================================================
+   CHART SIZE
+===================================================== */
+
+canvas{
+
+    width:100%!important;
+
+    height:320px!important;
+
+}
+
+/* =====================================================
+   CHART HEADER COLORS
+===================================================== */
+
+.bg-primary{
+
+    background:linear-gradient(135deg,#2563eb,#1d4ed8)!important;
+
+}
+
+.bg-success{
+
+    background:linear-gradient(135deg,#22c55e,#16a34a)!important;
+
+}
+
+.bg-warning{
+
+    background:linear-gradient(135deg,#f59e0b,#d97706)!important;
+
+    color:#fff!important;
+
+}
+
+.bg-danger{
+
+    background:linear-gradient(135deg,#ef4444,#dc2626)!important;
+
+}
+
+.bg-dark{
+
+    background:linear-gradient(135deg,#111827,#374151)!important;
+
+}
+
+/* =====================================================
+   TABLE
+===================================================== */
+
+.table{
+
+    border-radius:15px;
+
+    overflow:hidden;
+
+}
+
+.table thead{
+
+    font-size:15px;
+
+}
+
+.table tbody tr{
+
+    transition:.25s;
+
+}
+
+.table tbody tr:hover{
+
+    background:#eef5ff;
+
+}
+
+.table td{
+
+    padding:15px;
+
+    vertical-align:middle;
+
+}
+
+/* =====================================================
+   RECOMMENDATION SECTION
+===================================================== */
+
+.alert{
+
+    border:none;
+
+    border-radius:15px;
+
+}
+
+.list-group-item{
+
+    border:none;
+
+    border-bottom:1px solid #eee;
+
+    padding:15px;
+
+    transition:.25s;
+
+}
+
+.list-group-item:hover{
+
+    background:#f5f9ff;
+
+    transform:translateX(8px);
+
+}
+
+/* =====================================================
+   BUTTONS
+===================================================== */
+
+.btn{
+
+    border-radius:12px;
+
+    font-weight:600;
+
+    transition:.3s;
+
+}
+
+.btn:hover{
+
+    transform:translateY(-3px);
+
+}
+
+.btn-primary{
+
+    background:#2563eb;
+
+}
+
+.btn-success{
+
+    background:#16a34a;
+
+}
+
+.btn-warning{
+
+    color:#fff;
+
+}
+
+.btn-dark{
+
+    background:#111827;
+
+}
+
+/* =====================================================
+   FOOTER
+===================================================== */
+
+footer{
+
+    margin-top:60px;
+
+}
+
+footer h5{
+
+    font-weight:700;
+
+}
+
+footer p{
+
+    margin-top:10px;
+
+    color:#ddd;
+
+}
+
+/* =====================================================
+   ANIMATIONS
+===================================================== */
+
+.dashboard-card,
+.card{
+
+    animation:fadeUp .8s ease;
+
+}
+
+@keyframes fadeUp{
+
+    from{
+
+        opacity:0;
+
+        transform:translateY(30px);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:translateY(0);
+
+    }
+
+}
+
+/* =====================================================
+   IMAGE
+===================================================== */
+
+.dashboard-banner img{
+
+    transition:.4s;
+
+}
+
+.dashboard-banner img:hover{
+
+    transform:scale(1.05);
+
+}
+
+/* =====================================================
+   CARD ICON ANIMATION
+===================================================== */
+
+.card-icon{
+
+    transition:.4s;
+
+}
+
+.dashboard-card:hover .card-icon{
+
+    transform:rotate(10deg) scale(1.1);
+
+}
+
+/* =====================================================
+   SCROLLBAR
+===================================================== */
+
+::-webkit-scrollbar{
+
+    width:8px;
+
+}
+
+::-webkit-scrollbar-track{
+
+    background:#edf2f7;
+
+}
+
+::-webkit-scrollbar-thumb{
+
+    background:#2563eb;
+
+    border-radius:10px;
+
+}
+
+::-webkit-scrollbar-thumb:hover{
+
+    background:#1d4ed8;
+
+}
+
+/* =====================================================
+   SECTION SPACING
+===================================================== */
+
+.container{
+
+    margin-bottom:35px;
+
+}
+
+/* =====================================================
+   RESPONSIVE
+===================================================== */
+
+@media(max-width:992px){
+
+.dashboard-banner{
+
+    text-align:center;
+
+}
+
+.dashboard-banner h2{
+
+    font-size:28px;
+
+}
+
+.dashboard-banner img{
+
+    max-height:180px;
+
+}
+
+.dashboard-card{
+
+    flex-direction:column;
+
+    text-align:center;
+
+}
+
+.card-content h2{
+
+    font-size:26px;
+
+}
+
+canvas{
+
+    height:280px!important;
+
+}
+
+}
+
+@media(max-width:768px){
+
+.navbar-brand{
+
+    font-size:20px;
+
+}
+
+.dashboard-banner{
+
+    padding:20px;
+
+}
+
+.dashboard-banner h2{
+
+    font-size:24px;
+
+}
+
+.dashboard-banner p{
+
+    font-size:15px;
+
+}
+
+.dashboard-card{
+
+    padding:20px;
+
+}
+
+.card-icon{
+
+    width:65px;
+
+    height:65px;
+
+    font-size:24px;
+
+}
+
+.card-content h2{
+
+    font-size:24px;
+
+}
+
+.card-header{
+
+    text-align:center;
+
+}
+
+.table{
+
+    font-size:14px;
+
+}
+
+.btn{
+
+    margin-bottom:10px;
+
+}
+
+}
+
+@media(max-width:576px){
+
+.dashboard-banner h2{
+
+    font-size:22px;
+
+}
+
+.dashboard-banner p{
+
+    font-size:14px;
+
+}
+
+.card-content h2{
+
+    font-size:22px;
+
+}
+
+.card-icon{
+
+    width:60px;
+
+    height:60px;
+
+}
+
+canvas{
+
+    height:240px!important;
+
+}
+
+}
+

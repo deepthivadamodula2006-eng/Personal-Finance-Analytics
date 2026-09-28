@@ -1,0 +1,172 @@
+/* ====================================
+   animations.css
+   Personal Finance Dashboard
+==================================== */
+
+/* Fade In */
+@keyframes fadeIn{
+    from{
+        opacity:0;
+        transform:translateY(20px);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+/* Slide From Left */
+@keyframes slideLeft{
+    from{
+        opacity:0;
+        transform:translateX(-50px);
+    }
+    to{
+        opacity:1;
+        transform:translateX(0);
+    }
+}
+
+/* Slide From Right */
+@keyframes slideRight{
+    from{
+        opacity:0;
+        transform:translateX(50px);
+    }
+    to{
+        opacity:1;
+        transform:translateX(0);
+    }
+}
+
+/* Scale Up */
+@keyframes zoomIn{
+    from{
+        opacity:0;
+        transform:scale(.8);
+    }
+    to{
+        opacity:1;
+        transform:scale(1);
+    }
+}
+
+/* Floating Animation */
+@keyframes floating{
+    0%{
+        transform:translateY(0px);
+    }
+    50%{
+        transform:translateY(-8px);
+    }
+    100%{
+        transform:translateY(0px);
+    }
+}
+
+/* Pulse Effect */
+@keyframes pulse{
+    0%{
+        transform:scale(1);
+    }
+    50%{
+        transform:scale(1.05);
+    }
+    100%{
+        transform:scale(1);
+    }
+}
+
+/* ====================================
+   Apply Animations
+==================================== */
+
+/* Sidebar */
+.sidebar{
+    animation:slideLeft .8s ease;
+}
+
+/* Page Heading */
+.main h1{
+    animation:fadeIn .8s ease;
+}
+
+/* KPI Cards */
+.card{
+    animation:zoomIn .8s ease;
+}
+
+.card:hover{
+    animation:floating 2s infinite;
+}
+
+/* Dashboard Boxes */
+.box{
+    animation:fadeIn 1s ease;
+}
+
+/* Table */
+table{
+    animation:fadeIn 1.2s ease;
+}
+
+/* Buttons */
+.btn{
+    transition:.3s;
+}
+
+.btn:hover{
+    transform:translateY(-3px);
+    box-shadow:0 8px 20px rgba(0,0,0,.2);
+}
+
+/* Sidebar Links */
+.sidebar a{
+    transition:.3s;
+}
+
+.sidebar a:hover{
+    padding-left:25px;
+}
+
+/* Cards */
+.card:hover h2{
+    animation:pulse .8s;
+}
+
+/* Canvas Charts */
+canvas{
+    animation:fadeIn 1.5s ease;
+}
+
+/* Lists */
+.box ul li{
+    transition:.3s;
+}
+
+.box ul li:hover{
+    transform:translateX(8px);
+}
+
+/* Form Controls */
+.form-control{
+    transition:.3s;
+}
+
+.form-control:focus{
+    transform:scale(1.02);
+}
+
+/* Table Rows */
+.table tbody tr{
+    transition:.3s;
+}
+
+.table tbody tr:hover{
+    transform:scale(1.01);
+}
+
+/* Page Load */
+body{
+    animation:fadeIn .8s;
+}

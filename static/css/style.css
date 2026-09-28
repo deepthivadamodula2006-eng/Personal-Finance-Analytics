@@ -1,0 +1,198 @@
+/* ===========================
+   GENERAL
+=========================== */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, Helvetica, sans-serif;
+}
+
+body{
+    background:#f4f7fb;
+}
+
+/* ===========================
+   SIDEBAR
+=========================== */
+
+.sidebar{
+    position:fixed;
+    left:0;
+    top:0;
+    width:240px;
+    height:100vh;
+    background:#16213e;
+    padding-top:25px;
+}
+
+.sidebar h2{
+    color:white;
+    text-align:center;
+    margin-bottom:30px;
+    font-size:28px;
+}
+
+.sidebar a{
+    display:block;
+    color:white;
+    text-decoration:none;
+    padding:15px 25px;
+    font-size:18px;
+    transition:.3s;
+}
+
+.sidebar a i{
+    margin-right:10px;
+}
+
+.sidebar a:hover{
+    background:#0f3460;
+    padding-left:35px;
+}
+
+/* ===========================
+   MAIN
+=========================== */
+
+.main{
+    margin-left:250px;
+    padding:30px;
+}
+
+/* ===========================
+   TOP BAR
+=========================== */
+
+.topbar{
+    background:white;
+    border-radius:10px;
+    padding:20px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    box-shadow:0 5px 15px rgba(0,0,0,.1);
+}
+
+.topbar h2{
+    color:#16213e;
+}
+
+.user{
+    font-size:18px;
+    font-weight:bold;
+}
+
+/* ===========================
+   CARDS
+=========================== */
+
+.card{
+    border:none;
+    border-radius:15px;
+    padding:20px;
+    margin-bottom:20px;
+    box-shadow:0 8px 20px rgba(0,0,0,.1);
+}
+
+.card h5{
+    margin-bottom:15px;
+}
+
+.card h2{
+    font-size:32px;
+}
+
+.income{
+    background:#d4edda;
+}
+
+.expense{
+    background:#f8d7da;
+}
+
+.saving{
+    background:#d1ecf1;
+}
+
+.health{
+    background:#fff3cd;
+}
+
+/* ===========================
+   CHART BOX
+=========================== */
+
+.chart-card{
+    background:white;
+    border-radius:15px;
+    padding:20px;
+    margin-top:20px;
+    box-shadow:0 8px 20px rgba(0,0,0,.1);
+}
+
+/* ===========================
+   TABLE
+=========================== */
+
+table{
+    margin-top:20px;
+}
+
+thead{
+    background:#16213e;
+    color:white;
+}
+
+tbody tr:hover{
+    background:#f1f1f1;
+}
+
+/* ===========================
+   BUTTON
+=========================== */
+
+.btn-primary{
+    background:#16213e;
+    border:none;
+}
+
+.btn-primary:hover{
+    background:#0f3460;
+}
+
+/* ===========================
+   LIST
+=========================== */
+
+ul{
+    padding-left:20px;
+}
+
+li{
+    margin-bottom:10px;
+}
+
+/* ===========================
+   RESPONSIVE
+=========================== */
+
+@media(max-width:992px){
+
+.sidebar{
+    width:100%;
+    height:auto;
+    position:relative;
+}
+
+.main{
+    margin-left:0;
+}
+
+.topbar{
+    flex-direction:column;
+    gap:10px;
+}
+
+}
